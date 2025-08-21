@@ -1,0 +1,25 @@
+{
+  "name": "newman-github-action",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sync-postman-to-github.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gustiramadhan/newman-Github-Action.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/gustiramadhan/newman-Github-Action/issues"
+  },
+  "homepage": "https://github.com/gustiramadhan/newman-Github-Action#readme",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "node-fetch": "^3.3.2"
+  }
+}
