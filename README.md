@@ -13,7 +13,7 @@ Every change to the Postman collection will automatically trigger a workflow tha
 
 ---
 
-##✅ Benefits
+## ✅ Benefits
 - No manual testing – runs automatically in CI/CD.
 - Instant feedback with reports.
 - Keeps Postman collections and GitHub in sync.
