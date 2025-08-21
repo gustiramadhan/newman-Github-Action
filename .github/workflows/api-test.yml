@@ -1,31 +1,44 @@
-name: API Tests
+name: Sync & Test Postman Collection
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch: # bisa dijalankan manual
+  schedule:
+    - cron: "0 * * * *" # tiap jam (optional)
 
 jobs:
-  test:
+  sync-and-test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Install Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: "22"
 
-      - name: Install Newman + Reporter
-        run: |
-          npm install -g newman newman-reporter-htmlextra
+      - name: Install dependencies + Reporter
+        run: npm install -g newman newman-reporter-htmlextra
+
+      - name: Download Postman Collection
+        run: node sync-postman-to-github.js
+        env:
+          POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
+          COLLECTION_UID: ${{ secrets.COLLECTION_UID }}
 
       - name: Run API Tests
         run: |
-          newman run Booker_collection.json -e Booker_env.json \
+          newman run Booker_collection.json \
             -r htmlextra --reporter-htmlextra-export newman/newman-report.html
+
+      - name: Commit & Push updated Collection
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Booker_collection.json
+          git commit -m "chore: update postman collection" || echo "No changes"
+          git push
 
       - name: Upload Newman HTML Report
         uses: actions/upload-artifact@v4

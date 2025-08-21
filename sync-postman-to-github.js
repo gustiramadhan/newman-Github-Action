@@ -5,7 +5,7 @@ const fetch = global.fetch;
 
 // ==== CONFIG ====
 const POSTMAN_API_KEY = process.env.POSTMAN_API_KEY;
-const COLLECTION_UID = "18615958-2ed7b105-370c-4ed2-9a26-edf98cc8fc9a"; 
+const COLLECTION_UID = process.env.COLLECTION_UID;
 const FILE_NAME = "Booker_collection.json"; 
 const GITHUB_REPO = "github.com/gustiramadhan/newman-Github-Action.git"; 
 const BRANCH = "main";
