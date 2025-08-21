@@ -1,9 +1,9 @@
 name: Sync & Test Postman Collection
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # bisa dijalankan manual
   schedule:
-    - cron: "0 * * * *"
+    - cron: "0 * * * *" # tiap jam (optional)
 
 jobs:
   sync-and-test:
