@@ -21,6 +21,14 @@ jobs:
       - name: Install dependencies + Reporter
         run: npm install -g newman newman-reporter-htmlextra
 
+      - name: Debug secrets
+        run: |
+          echo "POSTMAN_API_KEY length: ${#POSTMAN_API_KEY}"
+          echo "COLLECTION_UID length: ${#COLLECTION_UID}"
+          env:
+          POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
+          COLLECTION_UID: ${{ secrets.COLLECTION_UID }}
+
       - name: Download Postman Collection
         run: node sync-postman-to-github.js
         env:
