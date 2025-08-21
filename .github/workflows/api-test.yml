@@ -8,6 +8,7 @@ on:
 jobs:
   sync-and-test:
     runs-on: ubuntu-latest
+    enviroment: production
 
     steps:
       - name: Checkout repo
