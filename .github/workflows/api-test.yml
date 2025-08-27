@@ -30,8 +30,7 @@ jobs:
 
       - name: Run API Tests
         run: |
-          newman run Booker_collection.json -e Booker_env.json \
-            -r htmlextra --reporter-htmlextra-export newman/newman-report.html
+          newman run Booker_collection.json -e Booker_env.json -r cli,htmlextra
       - name: Upload Newman HTML Report
         uses: actions/upload-artifact@v4
         with:
